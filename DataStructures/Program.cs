@@ -62,12 +62,59 @@ void dutchNationalFlagAlgo(int[] arr)
     PrintAllItems(arr);
 
 }
-Console.ReadLine();
+void FindMajorElement()
+{
+    int[] arr = new int[]{2, 3, 1, 3, 3};
+    int n = 4;
+    MooresVotingAlgo(arr,n);
+}
+void MooresVotingAlgo(int[] arr,int n)
+{
+    int k = n / 2;
+    //Now find the element in an array that has frequency >k
+    int count = 1; int res = 0;
+    for(var i=1;i<arr.Length;i++)
+    {
+        if (arr[res] == arr[i])
+            count++;
+        else
+            count--;
+
+        if (count == 0)
+        {
+            count = 1;
+            res = i;
+        }
+    }
+
+    count = 0;
+    for(var i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] == arr[res])
+            count++;
+    }
+    if (count > k)
+    {
+        Console.WriteLine("Majority Element is " + arr[res]);
+    }
+    else
+    {
+        Console.WriteLine(-1);
+    }
+}
+
 
 
 
 //Q1 : Find all leaders of an array
+//Leader of an array means the element that has all values lesser than that towards the right side
 //FindLeadersOfAnArray();
+
 //Q2 : Sort array and seperate 0's 1's and 2's using DNF Algo
 //SortZeroesOnesAndTwos();
-//Q3 : 
+
+//Q3 : Find Majority element which is greater than n/2
+//For example n is 4 then find the element of an array which is being occured (frequency) greater than 4/2 i.e. greater than 2.
+FindMajorElement();
+
+Console.ReadLine();
