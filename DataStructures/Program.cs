@@ -36,6 +36,8 @@ void swap(int[] arr,int swapPos1,int swapPos2)
 }
 void dutchNationalFlagAlgo(int[] arr)
 {
+    //https://www.youtube.com/watch?v=VkQZzSiYkhc&t=235s
+
     int start = 0;
     int end = arr.Length - 1;
     int mid = (start + end) / 2;
@@ -70,8 +72,9 @@ void FindMajorElement()
 }
 void MooresVotingAlgo(int[] arr,int n)
 {
-    int k = n / 2;
+    //https://www.youtube.com/watch?v=NgLeC7DeWn4&t=297s
     //Now find the element in an array that has frequency >k
+    int k = n / 2;
     int count = 1; int res = 0;
     for(var i=1;i<arr.Length;i++)
     {
@@ -86,7 +89,7 @@ void MooresVotingAlgo(int[] arr,int n)
             res = i;
         }
     }
-
+    //Verify the element in an array that has frequency >k or not!
     count = 0;
     for(var i = 0; i < arr.Length; i++)
     {
@@ -102,7 +105,41 @@ void MooresVotingAlgo(int[] arr,int n)
         Console.WriteLine(-1);
     }
 }
+void FindingTheMaxSubArray()
+{
+    int[] arr = new int[] { -2, -3, 4, -1, -2, 1, 5, -3 };
+    KadaneAlgo(arr);
+}
+void KadaneAlgo(int[] arr)
+{
+    //Naive Approach for finding subarrays
+    var maxSum = int.MinValue;
+    for(var i = 0; i < arr.Length; i++)
+    {
+        var sum = 0;
+        for (int j = i; j < arr.Length; j++)
+        {
+            sum += arr[j];
+        }
+        if (sum > maxSum)
+            maxSum = sum;
+    }
+    Console.WriteLine("Max Sum is " + maxSum);
 
+    //Kadane's Algorithm
+    //https://www.youtube.com/watch?v=YxuK6A3SvTs
+    var meh = 0; //maximum ending here
+    var msf = int.MinValue;  //maximum so far
+    for (int i = 0; i < arr.Length; i++)
+    {
+        meh += arr[i];
+        if (meh < arr[i])
+            meh = arr[i];
+        if (meh > msf)
+            msf = meh;
+    }
+    Console.WriteLine("Max Sum is " + msf);
+}
 
 
 
@@ -115,6 +152,10 @@ void MooresVotingAlgo(int[] arr,int n)
 
 //Q3 : Find Majority element which is greater than n/2
 //For example n is 4 then find the element of an array which is being occured (frequency) greater than 4/2 i.e. greater than 2.
-FindMajorElement();
+//FindMajorElement();
+
+//Q4 : Find the subarray of an array which has the maximum sum
+FindingTheMaxSubArray();
+
 
 Console.ReadLine();
