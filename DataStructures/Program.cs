@@ -140,8 +140,49 @@ void KadaneAlgo(int[] arr)
     }
     Console.WriteLine("Max Sum is " + msf);
 }
+void FindingSmallestPositiveMissingNumber()
+{
+    int[] arr = new int[] { 0, -10,2, 1, 3, -20 };
+    bucketingAlgorithm(arr);
+}
+void bucketingAlgorithm(int[] arr)
+{
+    //Naive approach for finding the smallest positive missing number
+    for (int i = 1; i < int.MaxValue; i++)
+    {
+        if (!arr.Contains(i))
+        {
+            Console.WriteLine("Missing positive number: " + i);
+            break;
+        }
+    }
 
+    //using Bucketing Algorithm
+    for (int i = 0; i < arr.Length; i++)
+    {
+        //if (arr[i] <= 0)
+        //    arr[i] = 1;
 
+        var index = arr[i]-1;
+        while (arr[i]>0 && arr[i] < arr.Length && arr[i] != arr[index])
+        {
+            //swap
+            var temp = arr[i];
+            arr[i] = arr[index];
+            arr[index] = temp;
+            index = arr[i] - 1;
+        }
+    }
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] != i + 1)
+        {
+            Console.WriteLine("Missing positive number: " + (i+1));
+            return;
+        }
+    }
+    Console.WriteLine("Missing positive number: " + (arr.Length + 1));
+}
 
 //Q1 : Find all leaders of an array
 //Leader of an array means the element that has all values lesser than that towards the right side
@@ -155,7 +196,9 @@ void KadaneAlgo(int[] arr)
 //FindMajorElement();
 
 //Q4 : Find the subarray of an array which has the maximum sum
-FindingTheMaxSubArray();
+//FindingTheMaxSubArray();
 
+//Q5 : Find the smallest positive missing number
+FindingSmallestPositiveMissingNumber();
 
 Console.ReadLine();
