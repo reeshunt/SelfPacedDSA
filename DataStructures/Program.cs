@@ -9,7 +9,7 @@
 void FindLeadersOfAnArray()
 {
     int[] arr = new int[] { 16, 17, 4, 3, 5, 2 };
-    //Finding the leaders of the array i.e. the number of the array is the greatest if we look towards the right side of that particular element of an array
+    //Finding the leaders of the array i.e. the number of the array is the greatest if we look towards the right side of that particular elemx ent of an array
     List<int> leaders = new List<int>();
     int maxValue = arr[arr.Length - 1];
     leaders.Add(maxValue); // as the right most value is always going to be the leader
@@ -157,12 +157,10 @@ void bucketingAlgorithm(int[] arr)
         }
     }
 
+    //https://www.youtube.com/watch?v=dBGTCaVph3Q
     //using Bucketing Algorithm
     for (int i = 0; i < arr.Length; i++)
     {
-        //if (arr[i] <= 0)
-        //    arr[i] = 1;
-
         var index = arr[i]-1;
         while (arr[i]>0 && arr[i] < arr.Length && arr[i] != arr[index])
         {
@@ -183,6 +181,189 @@ void bucketingAlgorithm(int[] arr)
     }
     Console.WriteLine("Missing positive number: " + (arr.Length + 1));
 }
+int FindPivot(int[] arr)
+{
+    int min = arr[0];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] < min)
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+bool isArraySortedRotated(int[] arr)
+{
+    int pivot = FindPivot(arr);
+    for (int i = pivot; i < arr.Length; i++)
+    {
+        if (i != arr.Length - 1  && arr[i] < arr[i + 1] )
+        {
+            return false;
+
+        }
+    }
+    for (int i = pivot-1; i >=1; i--)
+    {
+        if (arr[i] < arr[i - 1])
+        {
+            return false;
+
+        }
+    }
+    return true;
+}
+void FindingArraySortedAndRotated()
+{
+    int[] arr = { 2, 3, 4, 5, 1 };
+    var result = isArraySortedRotated(arr);
+    Console.WriteLine(result);
+}
+bool isSorted(List<int> arr){
+    for (var i = 0; i < arr.Count(); i++)
+    {
+        if (i < arr.Count() && arr[i] > arr[i + 1])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+List<int> swapAdjacentElements(List<int> arr)
+{
+    for (var i = 0; i < arr.Count(); i++)
+    {
+        if (i < arr.Count() - 1)
+        {
+            var temp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = temp;
+            i = i + 2;
+        }
+
+    }
+
+    return arr.ToList();
+}
+void FindingWaveArray()
+{
+    List<int> arr = new List<int>(){1,2,3,4,5 };
+    bool isSortedArr = isSorted(arr);
+    if (isSortedArr)
+    {
+        swapAdjacentElements(arr);
+    }
+}
+void SumOfQuery()
+{
+    int[] arr = { 1, 4, 2, 5,9,10,2 };
+    int q = 2;
+    int[] queries = { 2, 3 };
+    var result = FindSumOfQueries(arr, q, queries);
+    PrintAllItems(result);
+}
+int[] FindSumOfQueries(int[] arr,int queryCount, int[] queries)
+{
+    int[] answer = new int[queryCount/2];
+    int[] res = new int[arr.Length];
+    res[0] = arr[0];
+    int l, r = 0;
+    for (int i = 1; i <arr.Length; i++)
+    {
+        res[i] = res[i-1] + arr[i];
+    }
+    for (int i = 0; i < queries.Length-1; i=+2)
+    {
+        l = queries[i]-1;
+        r = queries[i + 1] - 1;
+        answer[i-1>0?i-1:0] = (res[r] - res[l-1]);
+        
+    }
+    return answer;
+}
+int TrappingRainWater(int[] arr)
+{
+    var maxVal = findTwoMaxValuesOfArray(arr);
+    int waterTrappingHeight = maxVal[1]; //2nd highest height
+    int sum = 0;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (waterTrappingHeight >= arr[i])
+        {
+            sum += waterTrappingHeight - arr[i];
+        }
+        else
+        {
+            sum += waterTrappingHeight;
+        }
+    }
+    return sum;
+}
+int[] findTwoMaxValuesOfArray(int[] arr)
+{
+    int[] result = new int[2];
+    int maxVal = arr[0],maxVal2 = arr[0];
+    int maxIndex = -1;
+    //for finding max value
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] > maxVal)
+        {
+            maxVal = arr[i];
+            maxIndex = i;
+        }
+    }
+    result[0] = maxVal;
+    //for finding 2nd max value
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] > maxVal2 && maxIndex!=i && maxIndex>=0)
+        {
+            maxVal2 = arr[i];
+            maxIndex = i;
+        }
+    }
+    result[1] = maxVal2;
+    return result;
+}
+void TrappingRainWaterProblem()
+{
+    int[] arr = { 4, 2, 1, 3 };
+    int result = TrappingRainWater(arr);
+    Console.WriteLine("Trapped Water count : "+result);
+}
+int FindingTheMaxSubArrayKSize(int[] arr,int sizeOfSubarray)
+{
+    int maxSum = 0;
+
+    for (int i = 0; i < sizeOfSubarray; i++)
+    {
+        maxSum += arr[i];
+    }
+
+    int currentSum = maxSum;
+
+    int l= 0, r = sizeOfSubarray-1;
+
+    while (r < arr.Length - 1)
+    {
+        currentSum = currentSum - arr[l] + arr[r + 1];
+        
+        l++;
+        r++;
+        if (currentSum > maxSum)
+            maxSum = currentSum;
+    }
+    return maxSum;
+}
+void FindingTheMaxSubArrayOfKSize()
+{
+    int[] arr = { 3,5,1,5,1,2,6,4,9,9,9,0 };
+    int k = 3;
+    int result = FindingTheMaxSubArrayKSize(arr,k);
+}
+
 
 //Q1 : Find all leaders of an array
 //Leader of an array means the element that has all values lesser than that towards the right side
@@ -199,6 +380,23 @@ void bucketingAlgorithm(int[] arr)
 //FindingTheMaxSubArray();
 
 //Q5 : Find the smallest positive missing number
-FindingSmallestPositiveMissingNumber();
+//FindingSmallestPositiveMissingNumber();
+
+//Q6 : Find if the array is sorted and rotated 
+//FindingArraySortedAndRotated();
+
+//Q7 : Find the WaveArray
+//FindingWaveArray();
+
+
+//GFG Q1 : Find the sum of Query in a given array
+//SumOfQuery();
+
+//GFG Q2 : Trapping Rain water , Find the water that can be stored in b/w length of blocks (sizes of blocks given in an array)
+//TrappingRainWaterProblem();
+
+//GFG Q3 : Find the max of subarray size k in an array
+//FindingTheMaxSubArrayOfKSize();
+
 
 Console.ReadLine();

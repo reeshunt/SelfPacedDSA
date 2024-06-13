@@ -1,15 +1,5 @@
-﻿<Properties StartupConfiguration="{F92CA471-7012-497B-8CC1-38673716E43C}|Default">
+﻿<Properties StartupConfiguration="{F92CA471-7012-497B-8CC1-38673716E43C}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.DataStructures PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/rees/Projects/DataStructures/DataStructures/Program.cs" relfile="DataStructures/Program.cs" line="22" column="1" />
-      <Breakpoint file="/Users/rees/Projects/DataStructures/DataStructures/Program.cs" relfile="DataStructures/Program.cs" line="17" column="1" />
-      <Breakpoint file="/Users/rees/Projects/DataStructures/DataStructures/Program.cs" relfile="DataStructures/Program.cs" line="38" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="DataStructures/Program.cs">
     <Files>
       <File FileName="DataStructures/Program.cs" Line="65" Column="20" />
@@ -26,4 +16,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.DataStructures PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <Breakpoint file="/Users/rees/Projects/DataStructures/DataStructures/Program.cs" relfile="DataStructures/Program.cs" line="22" column="1" />
+    <Breakpoint file="/Users/rees/Projects/DataStructures/DataStructures/Program.cs" relfile="DataStructures/Program.cs" line="17" column="1" />
+    <Breakpoint file="/Users/rees/Projects/DataStructures/DataStructures/Program.cs" relfile="DataStructures/Program.cs" line="38" column="1" />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
