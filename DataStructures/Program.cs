@@ -285,6 +285,7 @@ int[] FindSumOfQueries(int[] arr,int queryCount, int[] queries)
 int TrappingRainWater(int[] arr)
 {
     var maxVal = findTwoMaxValuesOfArray(arr);
+    //find the left max and right max so tht they are considered as boundary
     int waterTrappingHeight = maxVal[1]; //2nd highest height
     int sum = 0;
     for (int i = 0; i < arr.Length; i++)
@@ -357,14 +358,6 @@ int FindingTheMaxSubArrayKSize(int[] arr,int sizeOfSubarray)
     }
     return maxSum;
 }
-void FindingTheMaxSubArrayOfKSize()
-{
-    int[] arr = { 3,5,1,5,1,2,6,4,9,9,9,0 };
-    int k = 3;
-    int result = FindingTheMaxSubArrayKSize(arr,k);
-}
-
-
 //Q1 : Find all leaders of an array
 //Leader of an array means the element that has all values lesser than that towards the right side
 //FindLeadersOfAnArray();
@@ -397,6 +390,7 @@ void FindingTheMaxSubArrayOfKSize()
 
 //GFG Q3 : Find the max of subarray size k in an array
 //FindingTheMaxSubArrayOfKSize();
+
 
 
 Console.ReadLine();
